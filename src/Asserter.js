@@ -136,6 +136,29 @@ export default class Asserter
 		}
 	};
 	
+	/**
+	 * @param expectErrorClass {Class}
+	 * @param callback         {Function}
+	 */
+	assertThrowInstanceOf= ( expectErrorClass, callback, )=> {
+		if(!( isRealFunction( callback, ) ))
+			throw new TypeError( 'callback for assertThrowInstanceOf() must be a function and not be a class.', );
+		
+		++this.#counter;
+		
+		try
+		{
+			callback();
+			
+			this.#pushFailure( { type:'throw_instance_of', error:null, expectErrorClass, trace:makeTrace(), }, );
+		}
+		catch( error )
+		{
+			if(!( error instanceof expectErrorClass ))
+				this.#pushFailure( { type:'throw_instance_of', error, expectErrorClass, trace:makeTrace(), }, );
+		}
+	};
+	
 	static getResult( asserter, )
 	{
 		return {
