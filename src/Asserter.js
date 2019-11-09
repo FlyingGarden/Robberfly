@@ -244,12 +244,13 @@ export default class Asserter
 		return {
 			run: ()=> {
 				haveRun= true;
+				trace= makeTrace();
 			},
 			assert: ()=> {
 				++this.#counter;
 				
 				if( haveRun )
-					this.#pushFailure( { type:'not_run', trace:makeTrace(), }, );
+					this.#pushFailure( { type:'not_run', trace, }, );
 			},
 		};
 	}
