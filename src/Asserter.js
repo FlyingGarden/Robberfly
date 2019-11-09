@@ -1,4 +1,4 @@
-import { areOneThing, sameAs, } from './utils.js';
+import { areOneThing, sameAs, isRealFunction, isClass, isAsync, } from './utils.js';
 
 export default class Asserter
 {
@@ -82,6 +82,36 @@ export default class Asserter
 		if(!( value instanceof expectClass ))
 			this.#pushFailure( { type:'instance_of', value, expectClass, trace:makeTrace(), }, );
 	};
+	
+	/**
+	 * @param value <any>
+	 */
+	assertFunction= value=> {
+		++this.#counter;
+		
+		if(!( isRealFunction( value, ) ))
+			this.#pushFailure( { type:'function', value, trace:makeTrace(), }, );
+	}
+	
+	/**
+	 * @param value <any>
+	 */
+	assertClass= value=> {
+		++this.#counter;
+		
+		if(!( isClass( value, ) ))
+			this.#pushFailure( { type:'class', value, trace:makeTrace(), }, );
+	}
+	
+	/**
+	 * @param value <any>
+	 */
+	assertAsync= value=> {
+		++this.#counter;
+		
+		if(!( isAsync( value, ) ))
+			this.#pushFailure( { type:'async', value, trace:makeTrace(), }, );
+	}
 	
 	static getResult( asserter, )
 	{
