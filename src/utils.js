@@ -4,6 +4,57 @@ export function areOneThing( x, y, )
 	return new Set( [ x, y, ], ).size === 1;
 }
 
+export function sameAs( x, y, )
+{
+	return (
+		x === y
+	||
+		(x !== x && y !== y)
+	||
+		(x === Infinity && y === -Infinity)
+	||
+		(x === -Infinity && y === Infinity)
+	||
+		(
+			Array.isArray( x, )
+		&&
+			Array.isArray( y, )
+		&&
+			x.length === y.length
+		&&
+			x.every( ( item, index, )=> sameAs( y[index], item, ), )
+		)
+	||
+		(
+			isPureObject( x, )
+		&&
+			isPureObject( y, )
+		&&
+			sameAs( Object.entries( x, ), Object.entries( y, ), )
+		)
+	||
+		(
+			x instanceof Set
+		&&
+			y instanceof Set
+		&&
+			x.size === y.size
+		&&
+			[ ...x, ].every( item=> y.has( item, ), )
+		)
+	||
+		(
+			x instanceof Map
+		&&
+			y instanceof Map
+		&&
+			x.size === y.size
+		&&
+			[ ...x, ].every( ( [ key, value, ], )=> y.has( key, ) && sameAs( y.get( key, ), value, ), )
+		)
+	);
+}
+
 export function isPureObject( x, )
 {
 	return (
