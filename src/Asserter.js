@@ -7,6 +7,26 @@ export default class Asserter
 	
 	#pushFailure= failure=> this.#failures.push( Object.freeze( failure, ), );
 	
+	/**
+	 * @param condition  <any>
+	 */
+	assertTo= condition=> {
+		++this.#counter;
+		
+		if(!( condition ))
+			this.#pushFailure( { type:'to', condition, trace:makeTrace(), }, );
+	};
+	
+	/**
+	 * @param condition  <any>
+	 */
+	assertNotTo= condition=> {
+		++this.#counter;
+		
+		if( condition )
+			this.#pushFailure( { type:'not_to', condition, trace:makeTrace(), }, );
+	};
+	
 	static getResult( asserter, )
 	{
 		return {
