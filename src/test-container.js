@@ -5,7 +5,11 @@ const rootContainer= [];
 
 export async function collectTests( callback, )
 {
+	const container= await requestContainer();
 	
+	await callback();
+	
+	return container.unload();
 }
 
 export async function requestContainer()
