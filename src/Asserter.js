@@ -197,6 +197,63 @@ export default class Asserter
 		}
 	};
 	
+	/**
+	 * @usage
+	 *  const runner= assertRun();
+	 *  
+	 *  handleCallback( ()=> {
+	 *  	runner.run();
+	 *  }, );
+	 *  
+	 *  runner.assert();
+	 * 
+	 * @return { run:{Function}, assert:{Function}, }
+	 */
+	assertRun= ()=> {
+		let haveRun= false;
+		
+		return {
+			run: ()=> {
+				haveRun= true;
+			},
+			assert: ()=> {
+				++this.#counter;
+				
+				if(!( haveRun ))
+					this.#pushFailure( { type:'run', trace:makeTrace(), }, );
+			},
+		};
+	}
+	
+	/**
+	 * @usage
+	 *  const runner= assertNotRun();
+	 *  
+	 *  handleCallback( ()=> {
+	 *  	runner.run();
+	 *  }, );
+	 *  
+	 *  runner.assert();
+	 * 
+	 * @return { run:{Function}, assert:{Function}, }
+	 */
+	assertNotRun= ()=> {
+		let haveRun= false;
+		let trace= undefined;
+		
+		return {
+			run: ()=> {
+				haveRun= true;
+			},
+			assert: ()=> {
+				++this.#counter;
+				
+				if( haveRun )
+					this.#pushFailure( { type:'not_run', trace:makeTrace(), }, );
+			},
+		};
+	}
+	
 	static getResult( asserter, )
 	{
 		return {
