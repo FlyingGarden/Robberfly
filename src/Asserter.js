@@ -1,3 +1,4 @@
+import { areOneThing, } from './utils.js';
 
 export default class Asserter
 {
@@ -26,6 +27,29 @@ export default class Asserter
 		if( condition )
 			this.#pushFailure( { type:'not_to', condition, trace:makeTrace(), }, );
 	};
+	
+	/**
+	 * @param value  <any>
+	 * @param expect <any>
+	 */
+	assertBe= ( value, expect, )=> {
+		++this.#counter;
+		
+		if(!( areOneThing( value, expect, ) ))
+			this.#pushFailure( { type:'be', value, expect, trace:makeTrace(), }, );
+	};
+	
+	/**
+	 * @param value  <any>
+	 * @param expect <any>
+	 */
+	assertNotBe= ( value, expect, )=> {
+		++this.#counter;
+		
+		if( areOneThing( value, expect, ) )
+			this.#pushFailure( { type:'not_be', value, trace:makeTrace(), }, );
+	};
+	
 	
 	static getResult( asserter, )
 	{
