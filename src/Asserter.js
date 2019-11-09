@@ -113,6 +113,29 @@ export default class Asserter
 			this.#pushFailure( { type:'async', value, trace:makeTrace(), }, );
 	}
 	
+	/**
+	 * @param expectErrorClass <any>
+	 * @param callback         {Function}
+	 */
+	assertThrow= ( expectError, callback, )=> {
+		if(!( isRealFunction( callback, ) ))
+			throw new TypeError( 'callback for assertThrow() must be a function and not be a class.', );
+		
+		++this.#counter;
+		
+		try
+		{
+			callback();
+			
+			this.#pushFailure( { type:'throw', error:null, expectError, trace:makeTrace(), }, );
+		}
+		catch( error )
+		{
+			if(!( areOneThing( error, expectError, ) ))
+				this.#pushFailure( { type:'throw', error, expectError, trace:makeTrace(), }, );
+		}
+	};
+	
 	static getResult( asserter, )
 	{
 		return {
