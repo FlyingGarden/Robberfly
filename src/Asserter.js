@@ -254,6 +254,41 @@ export default class Asserter
 		};
 	}
 	
+	/**
+	 * @usage
+	 *  const runner= assertNotRun();
+	 *  
+	 *  handleCallback( ()=> {
+	 *  	runner.run();
+	 *  }, );
+	 *  
+	 *  handleCallback( ()=> {
+	 *  	runner.run();
+	 *  }, );
+	 *  
+	 *  runner.assert();
+	 * 
+	 * @param time number
+	 * 
+	 * @return { run:{Function}, assert:{Function}, }
+	 */
+	assertRunTimes= expectTimes=> {
+		let times= 0;
+		let trace= undefined;
+		
+		return {
+			run: ()=> {
+				++times;
+			},
+			assert: ()=> {
+				++this.#counter;
+				
+				if( expectTimes !== times )
+					this.#pushFailure( { type:'run_times', times, expectTimes, trace:makeTrace(), }, );
+			},
+		};
+	}
+	
 	static getResult( asserter, )
 	{
 		return {
