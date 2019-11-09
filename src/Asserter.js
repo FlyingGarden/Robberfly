@@ -72,6 +72,17 @@ export default class Asserter
 			this.#pushFailure( { type:'not_as', value, trace:makeTrace(), }, );
 	};
 	
+	/**
+	 * @param value       <any>
+	 * @param expectClass {Class}
+	 */
+	assertInstanceOf= ( value, expectClass, )=> {
+		++this.#counter;
+		
+		if(!( value instanceof expectClass ))
+			this.#pushFailure( { type:'instance_of', value, expectClass, trace:makeTrace(), }, );
+	};
+	
 	static getResult( asserter, )
 	{
 		return {
