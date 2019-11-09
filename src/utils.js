@@ -67,3 +67,33 @@ export function isPureObject( x, )
 		Reflect.getPrototypeOf( x, ) === Object.prototype
 	);
 }
+
+export function isRealFunction( value, )
+{
+	if( typeof value !== 'function' )
+		return false;
+	
+	const code= value.toString();
+	
+	return !code.startsWith( 'class', ) && !code.startsWith( 'async class', );
+}
+
+export function isClass( value, )
+{
+	if( typeof value !== 'function' )
+		return false;
+	
+	const code= value.toString();
+	
+	return code.startsWith( 'class', ) || code.startsWith( 'async class', );
+}
+
+export function isAsync( value, )
+{
+	if( typeof value !== 'function' )
+		return false;
+	
+	const code= value.toString();
+	
+	return code.startsWith( 'async', );
+}
