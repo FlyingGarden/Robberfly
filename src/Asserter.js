@@ -1,4 +1,4 @@
-import { areOneThing, } from './utils.js';
+import { areOneThing, sameAs, } from './utils.js';
 
 export default class Asserter
 {
@@ -50,6 +50,27 @@ export default class Asserter
 			this.#pushFailure( { type:'not_be', value, trace:makeTrace(), }, );
 	};
 	
+	/**
+	 * @param value  <any>
+	 * @param expect <any>
+	 */
+	assertAs= ( value, expect, )=> {
+		++this.#counter;
+		
+		if(!( sameAs( value, expect, ) ))
+			this.#pushFailure( { type:'as', value, expect, trace:makeTrace(), }, );
+	};
+	
+	/**
+	 * @param value  <any>
+	 * @param expect <any>
+	 */
+	assertNotAs= ( value, expect, )=> {
+		++this.#counter;
+		
+		if( sameAs( value, expect, ) )
+			this.#pushFailure( { type:'not_as', value, trace:makeTrace(), }, );
+	};
 	
 	static getResult( asserter, )
 	{
