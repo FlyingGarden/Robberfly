@@ -2,7 +2,22 @@ import * as Path from '../modules/path.js';
 
 export default class Robberfly
 {
+	/**
+	 * paths of test cases
+	 * 
+	 * @type [](string)
+	 */
+	#paths= [];
 	
+	/**
+	 * @param path (string)
+	 * 
+	 * @return <>
+	 */
+	addPath( ...paths )
+	{
+		this.#paths.push( ...paths.map( path=> resolvePath( path, ) ), );
+	}
 }
 
 /**
