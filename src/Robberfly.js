@@ -75,3 +75,26 @@ async function loadTests( paths, )
 		async ()=> Promise.all( paths.map( path=> import (path), ), ),
 	);
 }
+
+/**
+ * @param data <any>
+ * 
+ * @return ~<any>
+ */
+async function runWorker( data, )
+{
+	return new Promise( resolve=> {
+		const path= Path.resolve( Path.dirname( Path.traceBack( 0, ) ), './worker.js' );
+		const worker= new Worker( path, { name:'foo', type:'module', }, );
+		
+		worker.onmessage= ( { data, }, )=> {
+			
+			resolve( data, );
+			
+			if( worker.terminate )
+				worker.terminate();
+		};
+		
+		worker.postMessage( data, );
+	}, );
+}
