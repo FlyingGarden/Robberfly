@@ -1,3 +1,5 @@
+import { executeTest, } from './test-executor.js';
+import { printResults, } from './result-printer.js';
 
 let holding= undefined;
 let container= undefined;
@@ -46,3 +48,15 @@ export function addTest( name, test, )
 	
 	(container|| rootContainer).push( { name, test, }, );
 }
+
+setTimeout( async ()=> {
+	if( rootContainer.length === 0 )
+		return;
+	
+	const results= [];
+	
+	for( const { name, test, } of rootContainer )
+		results.push( await executeTest( name, test, ), );
+	
+	return printResults( results, );
+}, );
