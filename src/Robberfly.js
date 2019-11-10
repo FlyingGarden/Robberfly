@@ -35,6 +35,21 @@ export default class Robberfly
 		
 		return printResults( results, );
 	}
+	
+	/**
+	 * @return ~<>
+	 */
+	async runSerially()
+	{
+		const tests= await loadTests( this.#paths, );
+		
+		const results= [];
+		
+		for( const { name, test, } of tests )
+			results.push( await executeTest( name, test, ), );
+		
+		return printResults( results, );
+	}
 }
 
 /**
