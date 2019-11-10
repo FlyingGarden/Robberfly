@@ -80,3 +80,43 @@ tester.runIsoEach();
 
 Then, the tests will run in a standalone Web Worker thread. 
 Therefore, you should not test DOM and BOM dependent code in this way. 
+
+### tips
+
+The function test(), not run the test indeed. It only add the test to the container. 
+When you run test cases without `new Robberfly()`, we actually run them automatically at the secondary macro task. 
+So, we should add the tests before this. So you can add test synchronously or after promise, but not after timeout. 
+If you really need do this, you can import Robberfly dynamically to delay the automatic running. 
+
+```javascript
+import { test, } from 'https://robberfly.fenz.land/Robberfly.js';
+
+test( 'synchronously test', ()=> {
+	// that's fine
+}, );
+
+await then();
+
+test( 'micro task test', ()=> {
+	// that's fine
+}, );
+
+await timeout();
+
+test( 'macro task test', ()=> {
+	// that's not fine
+}, );
+
+```
+
+```javascript
+
+await timeout();
+
+const { test, }= await import ('https://robberfly.fenz.land/Robberfly.js');
+
+test( 'macro task test', ()=> {
+	// that's fine
+}, );
+
+```
