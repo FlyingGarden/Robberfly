@@ -1,3 +1,4 @@
+import './init.js';
 import { executeTest, } from './test-executor.js';
 import { printResults, } from './result-printer.js';
 

@@ -1,3 +1,4 @@
+import './init.js';
 import { collectTests, } from './test-container.js';
 import { executeTest, } from './test-executor.js';
 
