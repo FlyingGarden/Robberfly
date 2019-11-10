@@ -1,5 +1,7 @@
 import * as Path from '../modules/path.js';
 import { collectTests, } from './test-container.js';
+import { executeTest, } from './test-executor.js';
+import { printResults, } from './result-printer.js';
 
 export default class Robberfly
 {
@@ -18,6 +20,20 @@ export default class Robberfly
 	addPath( ...paths )
 	{
 		this.#paths.push( ...paths.map( path=> resolvePath( path, ) ), );
+	}
+	
+	/**
+	 * @return ~<>
+	 */
+	async run()
+	{
+		const tests= await loadTests( this.#paths, );
+		
+		const results= await Promise.all(
+			tests.map( ( { name, test, }, )=> executeTest( name, test, ), ),
+		);
+		
+		return printResults( results, );
 	}
 }
 
