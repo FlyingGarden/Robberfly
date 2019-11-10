@@ -50,6 +50,36 @@ export default class Robberfly
 		
 		return printResults( results, );
 	}
+	
+	/**
+	 * @return ~<>
+	 */
+	async runIso()
+	{
+		const results= await runWorker( { paths: this.#paths, }, );
+		
+		return printResults( results, );
+	}
+	
+	/**
+	 * @return ~<>
+	 */
+	async runIsoEach()
+	{
+		const results= await Promise.all( this.#paths.map( path=> runWorker( { paths: [ path, ], }, ), ) );
+		
+		return printResults( results.flat( 1, ), );
+	}
+	
+	/**
+	 * @return ~<>
+	 */
+	async runIsoSerially()
+	{
+		const results= await runWorker( { paths: this.#paths, serially:true, }, );
+		
+		return printResults( results, );
+	}
 }
 
 /**
