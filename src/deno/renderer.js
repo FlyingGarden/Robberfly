@@ -86,6 +86,7 @@ export async function renderResult( result, )
 		Color.yellow( String (result.assertions), ), ' assertions, ',
 		result.failures.length? Color.red( String (result.failures.length), ): Color.green( String (result.failures.length), ), ' failures',
 		result.error? [ ' and ', Color.bgRed( '1 error!', ), ]: [],
+		'\n',
 	], );
 }
 
@@ -126,6 +127,7 @@ export async function renderResults( results, )
 		(errors=> errors? [ ' and ', Color.bgRed( `${errors} error!`, ), ]: [])(
 			results.reduce( ( sum, result, )=> sum - - (result.error? 1: 0), 0, ),
 		),
+		'\n',
 	], );
 }
 
