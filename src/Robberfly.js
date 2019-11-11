@@ -1,7 +1,7 @@
 import * as Path from '../modules/path.js';
 import { collectTests, } from './test-container.js';
 import { executeTest, } from './test-executor.js';
-import { printResults, } from './result-printer.js';
+import RobberflyResults from './RobberflyResults.js';
 
 export default class Robberfly
 {
@@ -23,7 +23,7 @@ export default class Robberfly
 	}
 	
 	/**
-	 * @return ~<>
+	 * @return ~{RobberflyResults}
 	 */
 	async run()
 	{
@@ -33,11 +33,11 @@ export default class Robberfly
 			tests.map( ( { name, test, }, )=> executeTest( name, test, ), ),
 		);
 		
-		return printResults( results, );
+		return new RobberflyResults( results, );
 	}
 	
 	/**
-	 * @return ~<>
+	 * @return ~{RobberflyResults}
 	 */
 	async runSerially()
 	{
@@ -48,37 +48,37 @@ export default class Robberfly
 		for( const { name, test, } of tests )
 			results.push( await executeTest( name, test, ), );
 		
-		return printResults( results, );
+		return new RobberflyResults( results, );
 	}
 	
 	/**
-	 * @return ~<>
+	 * @return ~{RobberflyResults}
 	 */
 	async runIso()
 	{
 		const results= await runWorker( { paths: this.#paths, }, );
 		
-		return printResults( results, );
+		return new RobberflyResults( results, );
 	}
 	
 	/**
-	 * @return ~<>
+	 * @return ~{RobberflyResults}
 	 */
 	async runIsoEach()
 	{
 		const results= await Promise.all( this.#paths.map( path=> runWorker( { paths: [ path, ], }, ), ) );
 		
-		return printResults( results.flat( 1, ), );
+		return new RobberflyResults( results.flat( 1, ), );
 	}
 	
 	/**
-	 * @return ~<>
+	 * @return ~{RobberflyResults}
 	 */
 	async runIsoSerially()
 	{
 		const results= await runWorker( { paths: this.#paths, serially:true, }, );
 		
-		return printResults( results, );
+		return new RobberflyResults( results, );
 	}
 }
 
