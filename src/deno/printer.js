@@ -1,7 +1,7 @@
 
-export function print( text, )
+export async function print( text, )
 {
 	const encoder= new TextEncoder();
 	
-	Deno.stdout.write( encoder.encode( text, ), );
+	await Deno.stdout.write( encoder.encode( text, ), );
 }
