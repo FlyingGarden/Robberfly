@@ -123,17 +123,15 @@ export default class Asserter
 		
 		++this.#counter;
 		
-		try
-		{
-			callback();
-			
-			this.#pushFailure( { type:'throw', error:null, expectError, trace:makeTrace(), }, );
-		}
-		catch( error )
-		{
-			if(!( areOneThing( error, expectError, ) ))
-				this.#pushFailure( { type:'throw', error, expectError, trace:makeTrace(), }, );
-		}
+		tries( callback, )
+			.then( ()=> {
+				this.#pushFailure( { type:'throw', error:null, expectError, trace:makeTrace(), }, );
+			}, )
+			.catch( error=> {
+				if(!( areOneThing( error, expectError, ) ))
+					this.#pushFailure( { type:'throw', error, expectError, trace:makeTrace(), }, );
+			}, )
+		;
 	};
 	
 	/**
@@ -146,17 +144,15 @@ export default class Asserter
 		
 		++this.#counter;
 		
-		try
-		{
-			callback();
-			
-			this.#pushFailure( { type:'throw_instance_of', error:null, expectErrorClass, trace:makeTrace(), }, );
-		}
-		catch( error )
-		{
-			if(!( error instanceof expectErrorClass ))
-				this.#pushFailure( { type:'throw_instance_of', error, expectErrorClass, trace:makeTrace(), }, );
-		}
+		tries( callback, )
+			.then( ()=> {
+				this.#pushFailure( { type:'throw_instance_of', error:null, expectErrorClass, trace:makeTrace(), }, );
+			}, )
+			.catch( error=> {
+				if(!( error instanceof expectErrorClass ))
+					this.#pushFailure( { type:'throw_instance_of', error, expectErrorClass, trace:makeTrace(), }, );
+			}, )
+		;
 	};
 	
 	/**
@@ -168,14 +164,11 @@ export default class Asserter
 		
 		++this.#counter;
 		
-		try
-		{
-			callback();
-			
-			this.#pushFailure( { type:'to_throw_something', trace:makeTrace(), }, );
-		}
-		catch( error )
-		{}
+		tries( callback, )
+			.then( ()=> {
+				this.#pushFailure( { type:'to_throw_something', trace:makeTrace(), }, );
+			}, )
+		;
 	};
 	
 	/**
@@ -187,14 +180,11 @@ export default class Asserter
 		
 		++this.#counter;
 		
-		try
-		{
-			callback();
-		}
-		catch( error )
-		{
-			this.#pushFailure( { type:'not_throw', error, trace:makeTrace(), }, );
-		}
+		tries( callback, )
+			.catch( error=> {
+				this.#pushFailure( { type:'not_throw', error, trace:makeTrace(), }, );
+			}, )
+		;
 	};
 	
 	/**
@@ -310,4 +300,38 @@ function makeTrace()
 		.filter( $=> !$.includes( path, ), )
 		.join( '\n', )
 	;
+}
+
+function tries( callback, )
+{
+	let result= undefined;
+	let reason= undefined;
+	let successful= false;
+	
+	try{
+		result= callback();
+		
+		if( result instanceof Promise )
+			return result;
+		
+		successful= true;
+	}
+	catch( error )
+	{
+		reason= error;
+	}
+	
+	return {
+		then( callback=undefined, catchCallback=undefined, ){
+			if( successful )
+				callback && callback( result, );
+			else
+				catchCallback && catchCallback( reason, );
+			
+			return this;
+		},
+		catch( callback=undefined, ){
+			return this.then( undefined, callback, );
+		},
+	};
 }
