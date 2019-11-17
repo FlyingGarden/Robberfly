@@ -6,13 +6,27 @@ export default class Asserter
 	
 	#failures= [];
 	
+	#closed= false;
+	
 	#pushFailure= failure=> this.#failures.push( Object.freeze( failure, ), );
+	#beforeAssert= ()=> {
+		if( this.#closed )
+		{
+			const message= 'Test function should await for all assertions.';
+			const error= new Error( message, );
+			
+			error.stack= `${message}\n${makeTrace()}`;
+			
+			throw error;
+		}
+		++this.#counter;
+	};
 	
 	/**
 	 * @param condition  <any>
 	 */
 	assertTo= condition=> {
-		++this.#counter;
+		this.#beforeAssert();
 		
 		if(!( condition ))
 			this.#pushFailure( { type:'to', condition, trace:makeTrace(), }, );
@@ -22,7 +36,7 @@ export default class Asserter
 	 * @param condition  <any>
 	 */
 	assertNotTo= condition=> {
-		++this.#counter;
+		this.#beforeAssert();
 		
 		if( condition )
 			this.#pushFailure( { type:'not_to', condition, trace:makeTrace(), }, );
@@ -33,7 +47,7 @@ export default class Asserter
 	 * @param expect <any>
 	 */
 	assertBe= ( value, expect, )=> {
-		++this.#counter;
+		this.#beforeAssert();
 		
 		if(!( areOneThing( value, expect, ) ))
 			this.#pushFailure( { type:'be', value, expect, trace:makeTrace(), }, );
@@ -44,7 +58,7 @@ export default class Asserter
 	 * @param expect <any>
 	 */
 	assertNotBe= ( value, expect, )=> {
-		++this.#counter;
+		this.#beforeAssert();
 		
 		if( areOneThing( value, expect, ) )
 			this.#pushFailure( { type:'not_be', value, trace:makeTrace(), }, );
@@ -55,7 +69,7 @@ export default class Asserter
 	 * @param expect <any>
 	 */
 	assertAs= ( value, expect, )=> {
-		++this.#counter;
+		this.#beforeAssert();
 		
 		if(!( sameAs( value, expect, ) ))
 			this.#pushFailure( { type:'as', value, expect, trace:makeTrace(), }, );
@@ -66,7 +80,7 @@ export default class Asserter
 	 * @param expect <any>
 	 */
 	assertNotAs= ( value, expect, )=> {
-		++this.#counter;
+		this.#beforeAssert();
 		
 		if( sameAs( value, expect, ) )
 			this.#pushFailure( { type:'not_as', value, trace:makeTrace(), }, );
@@ -77,7 +91,7 @@ export default class Asserter
 	 * @param expectClass {Class}
 	 */
 	assertInstanceOf= ( value, expectClass, )=> {
-		++this.#counter;
+		this.#beforeAssert();
 		
 		if(!( value instanceof expectClass ))
 			this.#pushFailure( { type:'instance_of', value, expectClass:expectClass.name, trace:makeTrace(), }, );
@@ -87,7 +101,7 @@ export default class Asserter
 	 * @param value <any>
 	 */
 	assertFunction= value=> {
-		++this.#counter;
+		this.#beforeAssert();
 		
 		if(!( isRealFunction( value, ) ))
 			this.#pushFailure( { type:'function', value, trace:makeTrace(), }, );
@@ -97,7 +111,7 @@ export default class Asserter
 	 * @param value <any>
 	 */
 	assertClass= value=> {
-		++this.#counter;
+		this.#beforeAssert();
 		
 		if(!( isClass( value, ) ))
 			this.#pushFailure( { type:'class', value, trace:makeTrace(), }, );
@@ -107,7 +121,7 @@ export default class Asserter
 	 * @param value <any>
 	 */
 	assertAsync= value=> {
-		++this.#counter;
+		this.#beforeAssert();
 		
 		if(!( isAsync( value, ) ))
 			this.#pushFailure( { type:'async', value, trace:makeTrace(), }, );
@@ -121,7 +135,7 @@ export default class Asserter
 		if(!( isRealFunction( callback, ) ))
 			throw new TypeError( 'callback for assertThrow() must be a function and not be a class.', );
 		
-		++this.#counter;
+		this.#beforeAssert();
 		
 		tries( callback, )
 			.then( ()=> {
@@ -142,7 +156,7 @@ export default class Asserter
 		if(!( isRealFunction( callback, ) ))
 			throw new TypeError( 'callback for assertThrowInstanceOf() must be a function and not be a class.', );
 		
-		++this.#counter;
+		this.#beforeAssert();
 		
 		tries( callback, )
 			.then( ()=> {
@@ -162,7 +176,7 @@ export default class Asserter
 		if(!( isRealFunction( callback, ) ))
 			throw new TypeError( 'callback for assertToThrow() must be a function and not be a class.', );
 		
-		++this.#counter;
+		this.#beforeAssert();
 		
 		tries( callback, )
 			.then( ()=> {
@@ -178,7 +192,7 @@ export default class Asserter
 		if(!( isRealFunction( callback, ) ))
 			throw new TypeError( 'callback for assertNotThrow() must be a function and not be a class.', );
 		
-		++this.#counter;
+		this.#beforeAssert();
 		
 		tries( callback, )
 			.catch( error=> {
@@ -207,7 +221,7 @@ export default class Asserter
 				haveRun= true;
 			},
 			assert: ()=> {
-				++this.#counter;
+				this.#beforeAssert();
 				
 				if(!( haveRun ))
 					this.#pushFailure( { type:'run', trace:makeTrace(), }, );
@@ -237,7 +251,7 @@ export default class Asserter
 				trace= makeTrace();
 			},
 			assert: ()=> {
-				++this.#counter;
+				this.#beforeAssert();
 				
 				if( haveRun )
 					this.#pushFailure( { type:'not_run', trace, }, );
@@ -272,7 +286,7 @@ export default class Asserter
 				++times;
 			},
 			assert: ()=> {
-				++this.#counter;
+				this.#beforeAssert();
 				
 				if( expectTimes !== times )
 					this.#pushFailure( { type:'run_times', times, expectTimes, trace:makeTrace(), }, );
@@ -282,6 +296,8 @@ export default class Asserter
 	
 	static getResult( asserter, )
 	{
+		asserter.#closed= true;
+		
 		return {
 			assertions: asserter.#counter,
 			failures: [ ...asserter.#failures, ],
