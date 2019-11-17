@@ -11,10 +11,6 @@ export function sameAs( x, y, )
 	||
 		(x !== x && y !== y)
 	||
-		(x === Infinity && y === -Infinity)
-	||
-		(x === -Infinity && y === Infinity)
-	||
 		(
 			Array.isArray( x, )
 		&&
@@ -30,7 +26,13 @@ export function sameAs( x, y, )
 		&&
 			isPureObject( y, )
 		&&
-			sameAs( Object.entries( x, ), Object.entries( y, ), )
+			(( keysX, keysY, )=> (
+				keysX.length === keysY.length
+			&&
+				new Set( [ ...keysX, ...keysY, ], ).size === keysX.length
+			&&
+				keysX.every( key=> sameAs( x[key], y[key], ), )
+			))( Object.keys( x, ), Object.keys( y, ) )
 		)
 	||
 		(
