@@ -1,7 +1,7 @@
 
 export function areOneThing( x, y, )
 {
-	return new Set( [ x, y, ], ).size === 1;
+	return [ x, ].includes( y, );
 }
 
 export function sameAs( x, y, )
