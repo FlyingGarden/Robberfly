@@ -80,7 +80,7 @@ export default class Asserter
 		++this.#counter;
 		
 		if(!( value instanceof expectClass ))
-			this.#pushFailure( { type:'instance_of', value, expectClass, trace:makeTrace(), }, );
+			this.#pushFailure( { type:'instance_of', value, expectClass:expectClass.name, trace:makeTrace(), }, );
 	};
 	
 	/**
