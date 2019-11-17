@@ -5,7 +5,7 @@ import { executeTest, } from './test-executor.js';
 globalThis.onmessage= async ( { data:{ paths, serially=false, }, }, )=> {
 	const tests= await loadTests( paths, );
 	
-	const results= (
+	const results= await (
 		serially? (async tests=> {
 			const results= [];
 			
@@ -14,7 +14,7 @@ globalThis.onmessage= async ( { data:{ paths, serially=false, }, }, )=> {
 			
 			return results;
 		})( tests, ):
-		await Promise.all(
+		Promise.all(
 			tests.map( ( { name, test, }, )=> executeTest( name, test, ), ),
 		)
 	);
