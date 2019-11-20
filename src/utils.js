@@ -18,7 +18,7 @@ export function sameAs( x, y, )
 		&&
 			x.length === y.length
 		&&
-			x.every( ( item, index, )=> sameAs( y[index], item, ), )
+			[ ...x, ].every( ( item, index, )=> sameAs( y[index], item, ), )
 		)
 	||
 		(
