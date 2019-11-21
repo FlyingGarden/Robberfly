@@ -98,6 +98,28 @@ export default class Asserter
 	};
 	
 	/**
+	 * @param value          <any>
+	 * @param expectProperty (string)
+	 */
+	assertOwn= ( value, expectProperty, )=> {
+		this.#beforeAssert();
+		
+		if(!( Object.prototype.hasOwnProperty.call( value, expectProperty, ) ))
+			this.#pushFailure( { type:'own', value, expectProperty, trace:makeTrace(), }, );
+	};
+	
+	/**
+	 * @param value          <any>
+	 * @param expectProperty (string)
+	 */
+	assertNotOwn= ( value, expectProperty, )=> {
+		this.#beforeAssert();
+		
+		if( Object.prototype.hasOwnProperty.call( value, expectProperty, ) )
+			this.#pushFailure( { type:'not_own', value, expectProperty, trace:makeTrace(), }, );
+	};
+	
+	/**
 	 * @param value <any>
 	 */
 	assertFunction= value=> {

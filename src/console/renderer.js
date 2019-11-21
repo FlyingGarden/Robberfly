@@ -28,6 +28,12 @@ const typeRenderers= {
 	instance_of: ( { value, expectClass, }, )=> [
 		new Styled( { color:'red', }, value, ), ' should be instance of ', new Styled( { color:'green', }, expectClass, ),
 	],
+	own: ( { value, expectProperty, }, )=> [
+		new Styled( { color:'red', }, value, ), ' should own property ', new Styled( { color:'green', }, expectProperty, ),
+	],
+	not_own: ( { value, expectProperty, }, )=> [
+		new Styled( { color:'red', }, value, ), ' should not own property ', new Styled( { color:'green', }, expectProperty, ),
+	],
 	function: ( { value, }, )=> [
 		new Styled( { color:'red', }, value, ), ' should be a function',
 	],
