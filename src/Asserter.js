@@ -236,82 +236,28 @@ export default class Asserter
 	 * @return { run:{Function}, assert:{Function}, }
 	 */
 	assertRun= ()=> {
-		let haveRun= false;
-		
-		return {
-			run: ()=> {
-				haveRun= true;
-			},
-			assert: ()=> {
-				this.#beforeAssert();
-				
-				if(!( haveRun ))
-					this.#pushFailure( { type:'run', trace:makeTrace(), }, );
-			},
-		};
-	}
-	
-	/**
-	 * @usage
-	 *  const runner= assertNotRun();
-	 *  
-	 *  handleCallback( ()=> {
-	 *  	runner.run();
-	 *  }, );
-	 *  
-	 *  runner.assert();
-	 * 
-	 * @return { run:{Function}, assert:{Function}, }
-	 */
-	assertNotRun= ()=> {
-		let haveRun= false;
-		let trace= undefined;
-		
-		return {
-			run: ()=> {
-				haveRun= true;
-				trace= makeTrace();
-			},
-			assert: ()=> {
-				this.#beforeAssert();
-				
-				if( haveRun )
-					this.#pushFailure( { type:'not_run', trace, }, );
-			},
-		};
-	}
-	
-	/**
-	 * @usage
-	 *  const runner= assertNotRun();
-	 *  
-	 *  handleCallback( ()=> {
-	 *  	runner.run();
-	 *  }, );
-	 *  
-	 *  handleCallback( ()=> {
-	 *  	runner.run();
-	 *  }, );
-	 *  
-	 *  runner.assert();
-	 * 
-	 * @param time number
-	 * 
-	 * @return { run:{Function}, assert:{Function}, }
-	 */
-	assertRunTimes= expectTimes=> {
 		let times= 0;
-		let trace= undefined;
 		
 		return {
-			run: ()=> {
+			run: ( index=NaN, )=> {
+				if( !Number.isNaN( index, ) && index !== times )
+					this.#pushFailure( { type:'run_order', index, expectIndex:times, trace:makeTrace(), }, );
+				
 				++times;
 			},
-			assert: ()=> {
+			assert: ( expectTimes=NaN, )=> {
 				this.#beforeAssert();
 				
-				if( expectTimes !== times )
-					this.#pushFailure( { type:'run_times', times, expectTimes, trace:makeTrace(), }, );
+				if( Number.isNaN( expectTimes, ) )
+				{
+					if(!( times ))
+						this.#pushFailure( { type:'run', trace:makeTrace(), }, );
+				}
+				else
+				{
+					if( expectTimes !== times )
+						this.#pushFailure( { type:'run_times', times, expectTimes, trace:makeTrace(), }, );
+				}
 			},
 		};
 	}

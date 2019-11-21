@@ -61,8 +61,8 @@ const typeRenderers= {
 	run: ()=> [
 		'function should run',
 	],
-	not_run: ()=> [
-		'function should not run',
+	run_order: ( { index, expectIndex, }, )=> [
+		'function should run at index ', Color.green( String (index), ), ', but at index ', Color.red( String (expectIndex), ), ' actually',
 	],
 	run_times: ( { times, expectTimes, }, )=> [
 		'function should run ', Color.green( String (expectTimes), ), ' times, but run ', Color.red( String (times), ), ' times actually',
