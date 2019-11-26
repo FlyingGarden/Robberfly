@@ -13,7 +13,7 @@ const typeRenderers= {
 			'two of ', new Styled( { color:'red', }, value, ), ' should not be different referrence',
 		]:
 		[
-			new Styled( { color:'red', }, value, ), ' should be ', new Styled( { color:'green', }, value, ), 
+			new Styled( { color:'red', }, value, ), ' should be ', new Styled( { color:'green', }, expect, ),
 		]
 	),
 	not_be: ( { value, expect, }, )=> [
