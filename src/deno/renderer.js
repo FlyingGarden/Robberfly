@@ -25,6 +25,9 @@ const typeRenderers= {
 	not_as: ( { value, expect, }, )=> [
 		Color.green( renderValue( value, ), ), '\nshould not be the same as this value',
 	],
+	match: ( { value, regexp, }, )=> [
+		Color.red( renderValue( value, ), ), '\nshould match regexp ', Color.green( renderValue( regexp, ), ),
+	],
 	instance_of: ( { value, expectClass, }, )=> [
 		Color.red( renderValue( value, ), ), '\nshould be instance of ', Color.green( renderValue( expectClass, ), ),
 	],
