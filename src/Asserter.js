@@ -87,6 +87,21 @@ export default class Asserter
 	};
 	
 	/**
+	 * @param value  (string)
+	 *               <any>
+	 * @param regexp {RegExp}
+	 */
+	assertMatch= ( value, regexp, )=> {
+		this.#beforeAssert();
+		
+		if(!( regexp instanceof RegExp ))
+			throw new Error( `second parameter of assertMatch should be a RegExp`, );
+		
+		if(!( regexp.test( value, ) ))
+			this.#pushFailure( { type:'match', value:String (value), regexp, trace:makeTrace(), }, );
+	}
+	
+	/**
 	 * @param value       <any>
 	 * @param expectClass {Class}
 	 */
