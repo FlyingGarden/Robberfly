@@ -22,7 +22,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( asserter instanceof Asserter, 'new Asserter() should returns an instance of Asserter', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( asserter.constructor === Asserter, 'new Asserter() should returns an object with constructor Asserter', new Error().stack.replace( 'Error:', '', ), );
 	
-	console.assert( Object.keys( asserter, ).length === 17, 'asserter should have 17 own properties.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( Object.keys( asserter, ).length === 18, 'asserter should have 18 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( Object.prototype.hasOwnProperty.call( asserter, 'assertTo', ), 'asserter should have own prototype \'assertTo\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof asserter.assertTo === 'function', 'type of asserter.assertTo should be \'function\'.', new Error().stack.replace( 'Error:', '', ), );
@@ -53,6 +53,11 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( typeof asserter.assertNotAs === 'function', 'type of asserter.assertNotAs should be \'function\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( asserter.assertNotAs.name === 'assertNotAs', 'name of asserter.assertNotAs should be \'assertNotAs\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( asserter.assertNotAs.length === 2, 'length of asserter.assertNotAs should be 2', new Error().stack.replace( 'Error:', '', ), );
+	
+	console.assert( Object.prototype.hasOwnProperty.call( asserter, 'assertMatch', ), 'asserter should have own prototype \'assertMatch\'.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( typeof asserter.assertMatch === 'function', 'type of asserter.assertMatch should be \'function\'.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( asserter.assertMatch.name === 'assertMatch', 'name of asserter.assertMatch should be \'assertMatch\'.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( asserter.assertMatch.length === 2, 'length of asserter.assertMatch should be 2', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( Object.prototype.hasOwnProperty.call( asserter, 'assertInstanceOf', ), 'asserter should have own prototype \'assertInstanceOf\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof asserter.assertInstanceOf === 'function', 'type of asserter.assertInstanceOf should be \'function\'.', new Error().stack.replace( 'Error:', '', ), );
@@ -188,6 +193,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	(asserter.assertNotBe)( 1, 2, );
 	(asserter.assertAs)( 1, 1, );
 	(asserter.assertNotAs)( 1, 2, );
+	(asserter.assertMatch)( '666', /\d/, );
 	(asserter.assertInstanceOf)( [], Array, );
 	(asserter.assertOwn)( { foo:1, }, 'foo', );
 	(asserter.assertNotOwn)( { foo:1, }, 'bar', );
@@ -225,7 +231,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	
 	const result= Asserter.getResult( asserter, );
 	
-	console.assert( result.assertions === 19, 'there should be 19 assertions.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( result.assertions === 20, 'there should be 20 assertions.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( result.failures.length === 0, 'there should be 0 failures.', new Error().stack.replace( 'Error:', '', ), );
 }
 
@@ -238,6 +244,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	(asserter.assertNotBe)( 1, 1, );
 	(asserter.assertAs)( 1, 2, );
 	(asserter.assertNotAs)( 1, 1, );
+	(asserter.assertMatch)( ['abc'], /\d/, );
 	(asserter.assertInstanceOf)( {}, Array, );
 	(asserter.assertOwn)( {}, 'foo', );
 	(asserter.assertNotOwn)( { 'foo':1, }, 'foo', );
@@ -271,8 +278,8 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	
 	const result= Asserter.getResult( asserter, );
 	
-	console.assert( result.assertions === 19, 'there should be 19 assertions.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( result.failures.length === 19, 'there should be 19 failures.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( result.assertions === 20, 'there should be 20 assertions.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( result.failures.length === 20, 'there should be 20 failures.', new Error().stack.replace( 'Error:', '', ), );
 	
 	const [
 		failToAssertTo,
@@ -281,6 +288,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 		failToAssertNotBe,
 		failToAssertAs,
 		failToAssertNotAs,
+		failToAssertMatch,
 		failToAssertInstanceOf,
 		failToAssertOwn,
 		failToAssertNotOwn,
@@ -358,6 +366,19 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertNotAs, 'trace', ), 'failure of assertNotAs should have own property \'trace\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertNotAs.trace === 'string', 'property \'trace\' of failure of assertNotAs should be a string.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertNotAs, 'value', ), 'failure of assertNotAs should have own property \'value\'.', new Error().stack.replace( 'Error:', '', ), );
+	
+	console.assert( failToAssertMatch instanceof Object, 'failure of assertMatch should be an object.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( Object.isFrozen( failToAssertMatch, ), 'failure of assertMatch should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( Object.keys( failToAssertMatch, ).length === 4, 'failure of assertMatch should have 4 own properties.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( Object.prototype.hasOwnProperty.call( failToAssertMatch, 'type', ), 'failure of assertMatch should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( typeof failToAssertMatch.type === 'string', 'property \'type\' of failure of assertMatch should be a string.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( failToAssertMatch.type === 'match', 'property \'type\' of failure of assertMatch should be \'match\'.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( Object.prototype.hasOwnProperty.call( failToAssertMatch, 'trace', ), 'failure of assertMatch should have own property \'trace\'.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( typeof failToAssertMatch.trace === 'string', 'property \'trace\' of failure of assertMatch should be a string.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( Object.prototype.hasOwnProperty.call( failToAssertMatch, 'value', ), 'failure of assertMatch should have own property \'value\'.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( typeof failToAssertMatch.value === 'string', 'property \'value\' of failure of assertMatch should be a string.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( Object.prototype.hasOwnProperty.call( failToAssertMatch, 'regexp', ), 'failure of assertMatch should have own property \'regexp\'.', new Error().stack.replace( 'Error:', '', ), );
+	console.assert( failToAssertMatch.regexp instanceof RegExp, 'property \'regexp\' of failure of assertMatch should be an instance of RegExp.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertInstanceOf instanceof Object, 'failure of assertInstanceOf should be an object.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.isFrozen( failToAssertInstanceOf, ), 'failure of assertInstanceOf should be frozen.', new Error().stack.replace( 'Error:', '', ), );
