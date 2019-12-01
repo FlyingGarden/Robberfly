@@ -62,11 +62,30 @@ export default class Robberfly
 	}
 	
 	/**
+	 * @param limit (number)
+	 * 
 	 * @return ~{RobberflyResults}
 	 */
-	async runIsoEach()
+	async runIsoEach( limit=48, )
 	{
-		const results= await Promise.all( this.#paths.map( path=> runWorker( { paths: [ path, ], }, ), ) );
+		const promises= [];
+		
+		let concurrent= 0;
+		let index= 0
+		while( index < this.#paths.length )
+		if( concurrent < limit )
+		{
+			
+			++concurrent;
+			
+			const path= this.#paths[index++];
+			
+			promises.push( runWorker( { paths: [ path, ], }, ).finally( ()=> --concurrent, ), );
+		}
+		else
+			await new Promise( resolve=> setTimeout( resolve, ), );
+		
+		const results= await Promise.all( promises, );
 		
 		return new RobberflyResults( results.flat( 1, ), );
 	}
