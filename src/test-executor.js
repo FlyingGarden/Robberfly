@@ -8,7 +8,9 @@ export async function executeTest( name, test, )
 	
 	try
 	{
-		await test( asserter, );
+		const probe= ( x, ...a )=> console.warn( x, ...a, `\n${new Error().stack.split( '\n', ).slice( 2, )[0]}`, );
+		
+		await test( asserter, probe, );
 	}
 	catch( e )
 	{
