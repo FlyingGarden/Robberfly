@@ -21,6 +21,9 @@ globalThis.onmessage= async ( { data:{ paths, serially=false, }, }, )=> {
 	
 	globalThis.postMessage( results, );
 	
+	if( globalThis.Deno )
+		return globalThis.workerClose();
+	
 	globalThis.close();
 };
 
