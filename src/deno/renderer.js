@@ -48,18 +48,18 @@ const typeRenderers= {
 	],
 	throw: ( { value, expectError, error, }, )=> [
 		'expect to throw:\n', Color.green( renderValue( expectError, ), ),
-		'\nactually throw:\n', error? Color.red( renderValue( error, ), ): 'nothing',
+		'\nactually throw:\n', error? Color.red( renderError( error, ), ): 'nothing',
 	],
 	throw_instance_of: ( { value, expectErrorClass, error, }, )=> [
 		'expect to throw an error instance of:\n', Color.green( renderValue( expectErrorClass, ), ),
-		'\nactually throw:\n', error? Color.red( renderValue( error, ), ): 'nothing',
+		'\nactually throw:\n', error? Color.red( renderError( error, ), ): 'nothing',
 	],
 	to_throw: ( { value, expectErrorClass, error, }, )=> [
 		'expect to throw an error instance of:\n', Color.green( renderValue( expectErrorClass, ), ),
-		'\nactually throw:\n', error? Color.red( renderValue( error, ), ): 'nothing',
+		'\nactually throw:\n', error? Color.red( renderError( error, ), ): 'nothing',
 	],
 	not_throw: ( { value, expectErrorClass, error, }, )=> [
-		'expect to not throw error.\nactually throw:\n', Color.red( renderValue( error, ), ),
+		'expect to not throw error.\nactually throw:\n', Color.red( renderError( error, ), ),
 	],
 	run: ()=> [
 		'function should run',
@@ -87,7 +87,7 @@ export async function renderResult( result, )
 		// error
 		result.error? [
 			'\n', Color.bgRed( 'throws:', ), '\n',
-			renderValue( result.error, ), '\n',
+			renderError( result.error, ), '\n',
 		]: [],
 		
 		// aggregation
@@ -121,7 +121,7 @@ export async function renderResults( results, )
 			// error
 			result.error? [
 				'\n', Color.bgRed( 'throws:', ), '\n',
-				renderValue( result.error, ), '\n',
+				renderError( result.error, ), '\n',
 			]: [],
 		], ),
 		
@@ -159,4 +159,9 @@ function renderValue( value, )
 		):
 		String (value)
 	);
+}
+
+function renderError( error, )
+{
+	return typeof error === 'string'? error: error.stack;
 }

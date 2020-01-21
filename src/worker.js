@@ -19,6 +19,12 @@ globalThis.onmessage= async ( { data:{ paths, serially=false, }, }, )=> {
 		)
 	);
 	
+	if( globalThis.Deno )
+		results.forEach( result=> {
+			if( result.error )
+				result.error= result.error.stack;
+		}, );
+	
 	globalThis.postMessage( results, );
 	
 	if( globalThis.Deno )
