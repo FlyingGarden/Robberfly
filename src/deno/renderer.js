@@ -29,7 +29,10 @@ const typeRenderers= {
 		Color.red( renderValue( value, ), ), '\nshould match regexp ', Color.green( renderValue( regexp, ), ),
 	],
 	instance_of: ( { value, expectClass, }, )=> [
-		Color.red( renderValue( value, ), ), '\nshould be instance of ', Color.green( renderValue( expectClass, ), ),
+		Color.red( renderValue( value, ), ), '\nshould be instance of ', Color.green( typeof expectClass === 'string'? expectClass: renderValue( expectClass, ), ),
+	],
+	not_instance_of: ( { value, expectClass, }, )=> [
+		Color.red( renderValue( value, ), ), '\nshould not be instance of ', Color.green( typeof expectClass === 'string'? expectClass: renderValue( expectClass, ), ),
 	],
 	own: ( { value, expectProperty, }, )=> [
 		Color.red( renderValue( value, ), ), '\nshould own property ', Color.green( renderValue( expectProperty, ), ),
