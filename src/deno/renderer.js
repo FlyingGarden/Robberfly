@@ -127,8 +127,8 @@ export async function renderResults( results, )
 		
 		// aggregation
 		'\n',
-		'tested ', results.length, ' tests: ',
-		results.reduce( ( sum, result, )=> sum - - result.assertions, 0, ), ' assertions, ',
+		'tested ', Color.yellow( String (results.length), ), ' tests: ',
+		Color.yellow( String (results.reduce( ( sum, result, )=> sum - - result.assertions, 0, )), ), ' assertions, ',
 		(failures=> failures? Color.red( String (failures), ): Color.green( String (failures), ))(
 			results.reduce( ( sum, result, )=> sum - - result.failures.length, 0, ),
 		),
