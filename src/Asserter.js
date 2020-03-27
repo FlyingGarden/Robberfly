@@ -113,6 +113,17 @@ export default class Asserter
 	};
 	
 	/**
+	 * @param value       <any>
+	 * @param expectClass {Class}
+	 */
+	assertNotInstanceOf= ( value, expectClass, )=> {
+		this.#beforeAssert();
+		
+		if( value instanceof expectClass )
+			this.#pushFailure( { type:'not_instance_of', value, expectClass:expectClass.name, trace:makeTrace(), }, );
+	};
+	
+	/**
 	 * @param value          <any>
 	 * @param expectProperty (string)
 	 */
@@ -290,7 +301,7 @@ export default class Asserter
 
 function makeTrace()
 {
-	const path= import.meta.url.replace( /src\/Asserter\.js$/, '', );
+	const path= import.meta.url.replace( /src\/Asserter\.js(?:\?.*)?(?:#.*)?$/, '', );
 	
 	return new Error()
 		.stack
