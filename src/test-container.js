@@ -1,12 +1,13 @@
 import './init.js';
 import { executeTest, } from './test-executor.js';
 import { printResults, } from './result-printer.js';
+export { collectTests, requestContainer, addTest, };
 
 let holding= undefined;
 let container= undefined;
 const rootContainer= [];
 
-export async function collectTests( callback, )
+async function collectTests( callback, )
 {
 	const container= await requestContainer();
 	
@@ -15,7 +16,7 @@ export async function collectTests( callback, )
 	return container.unload();
 }
 
-export async function requestContainer()
+async function requestContainer()
 {
 	while( holding )
 		await holding;
@@ -42,7 +43,7 @@ export async function requestContainer()
 	};
 }
 
-export function addTest( name, test, )
+function addTest( name, test, )
 {
 	if( typeof name === 'function' )
 		return addTest( name.name, name, );

@@ -1,6 +1,7 @@
 import * as ConsolePrinter from '../console/printer.js';
+export { print, };
 
-export function print( output, )
+function print( output, )
 {
 	ConsolePrinter.print( output, );
 }

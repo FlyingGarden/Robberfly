@@ -1,5 +1,6 @@
+export { Styled as default, };
 
-export default class Styled
+class Styled
 {
 	#style;
 	

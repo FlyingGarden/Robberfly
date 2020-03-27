@@ -1,6 +1,7 @@
 import Asserter from './Asserter.js';
+export { executeTest, };
 
-export async function executeTest( name, test, )
+async function executeTest( name, test, )
 {
 	const asserter= new Asserter();
 	

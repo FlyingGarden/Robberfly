@@ -1,11 +1,12 @@
 import * as ConsoleRenderer from '../console/renderer.js';
+export { renderResult, renderResults, };
 
-export async function renderResult( result, )
+async function renderResult( result, )
 {
 	return ConsoleRenderer.renderResult( result, );
 }
 
-export async function renderResults( results, )
+async function renderResults( results, )
 {
 	return ConsoleRenderer.renderResults( results, );
 }

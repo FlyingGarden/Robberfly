@@ -1,6 +1,7 @@
 import { printResults, } from './result-printer.js';
+export { RobberflyResults as default, };
 
-export default class RobberflyResults
+class RobberflyResults
 {
 	#results;
 	

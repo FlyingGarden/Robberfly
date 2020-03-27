@@ -1,5 +1,6 @@
 import * as Color from '../../modules/deno/colors.ts';
 import { isPureObject, sameAs, } from '../utils.js';
+export { renderResult, renderResults, };
 
 const typeRenderers= {
 	to: ( { condition, }, )=> [
@@ -75,7 +76,7 @@ const typeRenderers= {
 	],
 };
 
-export async function renderResult( result, )
+async function renderResult( result, )
 {
 	return ($=> $.flat( Infinity, ).join( '', ))( [
 		
@@ -102,7 +103,7 @@ export async function renderResult( result, )
 	], );
 }
 
-export async function renderResults( results, )
+async function renderResults( results, )
 {
 	return ($=> $.flat( Infinity, ).join( '', ))( [
 		
