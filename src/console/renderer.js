@@ -1,5 +1,6 @@
 import Styled from './Styled.js';
 import { sameAs, } from '../utils.js';
+export { renderResult, renderResults, };
 
 const typeRenderers= {
 	to: ( { condition, }, )=> [
@@ -75,7 +76,7 @@ const typeRenderers= {
 	],
 };
 
-export function renderResult( result, )
+function renderResult( result, )
 {
 	return [ { type:'group', data:[ new Styled( { 'font-weight':'normal', }, 'testing ', ), new Styled( { color:'blue', }, result.name, ), ], children: [
 		
@@ -99,7 +100,7 @@ export function renderResult( result, )
 	], }, ];
 }
 
-export function renderResults( results, )
+function renderResults( results, )
 {
 	return [ { type:'group', data:[ new Styled( { 'font-weight':'normal', }, 'testing ', ), new Styled( { color:'blue', }, results.length, ), new Styled( { 'font-weight':'normal', }, ' tests', ), ], children: [
 		

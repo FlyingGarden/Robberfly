@@ -1,13 +1,14 @@
 import env from './env.js';
+export { printResult, printResults, };
 
 const printerEnv= env|| 'console';
 
-export async function printResult( result, )
+async function printResult( result, )
 {
 	return print( 'Result', result, );
 }
 
-export async function printResults( results, )
+async function printResults( results, )
 {
 	if( results.length === 1 )
 		return printResult( results[0], );

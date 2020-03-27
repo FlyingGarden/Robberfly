@@ -3,8 +3,9 @@ import { collectTests, } from './test-container.js';
 import { executeTest, } from './test-executor.js';
 import RobberflyResults from './RobberflyResults.js';
 import runWorker from './runWorker.js';
+export { Robberfly as default, };
 
-export default class Robberfly
+class Robberfly
 {
 	/**
 	 * paths of test cases

@@ -1,6 +1,7 @@
 import { areOneThing, sameAs, isRealFunction, isClass, isAsync, } from './utils.js';
+export { Asserter as default, };
 
-export default class Asserter
+class Asserter
 {
 	#counter= 0;
 	

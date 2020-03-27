@@ -1,10 +1,18 @@
+export {
+	areOneThing,
+	sameAs,
+	isPureObject,
+	isRealFunction,
+	isClass,
+	isAsync,
+};
 
-export function areOneThing( x, y, )
+function areOneThing( x, y, )
 {
 	return [ x, ].includes( y, );
 }
 
-export function sameAs( x, y, )
+function sameAs( x, y, )
 {
 	return (
 		x === y
@@ -57,7 +65,7 @@ export function sameAs( x, y, )
 	);
 }
 
-export function isPureObject( x, )
+function isPureObject( x, )
 {
 	return (
 		x
@@ -70,7 +78,7 @@ export function isPureObject( x, )
 	);
 }
 
-export function isRealFunction( value, )
+function isRealFunction( value, )
 {
 	if( typeof value !== 'function' )
 		return false;
@@ -80,7 +88,7 @@ export function isRealFunction( value, )
 	return !code.startsWith( 'class', ) && !code.startsWith( 'async class', );
 }
 
-export function isClass( value, )
+function isClass( value, )
 {
 	if( typeof value !== 'function' )
 		return false;
@@ -90,7 +98,7 @@ export function isClass( value, )
 	return code.startsWith( 'class', ) || code.startsWith( 'async class', );
 }
 
-export function isAsync( value, )
+function isAsync( value, )
 {
 	if( typeof value !== 'function' )
 		return false;

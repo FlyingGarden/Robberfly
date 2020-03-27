@@ -1,11 +1,12 @@
 import * as Path from '../modules/path.js';
+export { runWorker as default, };
 
 /**
  * @param data <any>
  * 
  * @return ~<any>
  */
-export default async function runWorker( action, data, )
+async function runWorker( action, data, )
 {
 	return new Promise( resolve=> {
 		const path= Path.resolve( Path.dirname( Path.traceBack( 0, ) ), './worker.js' );

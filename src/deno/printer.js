@@ -1,5 +1,6 @@
+export { print, };
 
-export async function print( text, )
+async function print( text, )
 {
 	const encoder= new TextEncoder();
 	

@@ -1,6 +1,7 @@
 import Styled from './Styled.js';
+export { print, };
 
-export function print( output, )
+function print( output, )
 {
 	for( const { type, data=[], ...item } of output.flat( Infinity, ) )
 	{
