@@ -290,7 +290,7 @@ export default class Asserter
 
 function makeTrace()
 {
-	const path= import.meta.url.replace( /src\/Asserter\.js$/, '', );
+	const path= import.meta.url.replace( /src\/Asserter\.js(?:\?.*)?(?:#.*)?$/, '', );
 	
 	return new Error()
 		.stack

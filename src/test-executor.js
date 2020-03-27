@@ -15,6 +15,9 @@ export async function executeTest( name, test, )
 	catch( e )
 	{
 		error= e;
+		
+		if( e instanceof Error )
+			e.stack= clearTrace( e.stack, );
 	}
 	
 	return {
@@ -22,4 +25,15 @@ export async function executeTest( name, test, )
 		...Asserter.getResult( asserter, ),
 		error,
 	};
+}
+
+function clearTrace( trace, )
+{
+	const path= import.meta.url.replace( /src\/test-executor\.js(?:\?.*)?(?:#.*)?$/, '', );
+	
+	return trace
+		.split( '\n', )
+		.filter( $=> !$.includes( path, ), )
+		.join( '\n', )
+	;
 }
