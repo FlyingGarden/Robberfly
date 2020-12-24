@@ -10,7 +10,7 @@ async function runWorker( action, data, )
 {
 	return new Promise( resolve=> {
 		const path= Path.resolve( Path.dirname( Path.traceBack( 0, ) ), './worker.js' );
-		const worker= new Worker( path, { name:'foo', type:'module', }, );
+		const worker= new Worker( path, { name:'foo', type:'module', deno:'Deno' in globalThis, }, );
 		
 		worker.onmessage= ( { data, }, )=> {
 			

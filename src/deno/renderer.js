@@ -149,7 +149,7 @@ function renderValue( value, )
 	return (
 		value === null? 'null':
 		value === undefined? 'undefined':
-		typeof value === 'number'? `Number( ${value} )`:
+		typeof value === 'number'? `Number( ${value.toString(0x10)} )`:
 		typeof value === 'bigint'? `BigInt( ${value} )`:
 		typeof value === 'string'? `String( ${value} )`:
 		typeof value === 'symbol'? value.toString():
