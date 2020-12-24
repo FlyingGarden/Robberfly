@@ -1,2 +1,2 @@
 #!/bin/sh
-deno --allow-read --allow-net ./tests/index.js 1>/dev/null
+deno run --allow-read --allow-net --unstable ./tests/index.js 1>/dev/null
