@@ -183,7 +183,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	const [ failure, ]= result.failures;
 	
 	console.assert( typeof failure === 'object', 'type of failure should be \'object\'.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failure, ), 'failure should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failure, ), 'failure should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( Object.prototype.hasOwnProperty.call( failure, 'type', ), 'failure should have own prototype \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failure.type === 'string', 'type of failure.type should be \'string\'.', new Error().stack.replace( 'Error:', '', ), );
@@ -313,7 +313,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	]= result.failures;
 	
 	console.assert( failToAssertTo instanceof Object, 'failure of assertTo should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertTo, ), 'failure of assertTo should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertTo, ), 'failure of assertTo should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertTo, ).length === 3, 'failure of assertTo should have 3 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertTo, 'type', ), 'failure of assertTo should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertTo.type === 'string', 'property \'type\' of failure of assertTo should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -323,7 +323,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertTo, 'condition', ), 'failure of assertTo should have own property \'condition\'.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertNotTo instanceof Object, 'failure of assertNotTo should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertNotTo, ), 'failure of assertNotTo should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertNotTo, ), 'failure of assertNotTo should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertNotTo, ).length === 3, 'failure of assertNotTo should have 3 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertNotTo, 'type', ), 'failure of assertNotTo should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertNotTo.type === 'string', 'property \'type\' of failure of assertNotTo should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -334,7 +334,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertTo, 'condition', ), 'failure of assertTo should have own property \'condition\'.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertBe instanceof Object, 'failure of assertBe should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertBe, ), 'failure of assertBe should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertBe, ), 'failure of assertBe should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertBe, ).length === 4, 'failure of assertBe should have 4 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertBe, 'type', ), 'failure of assertBe should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertBe.type === 'string', 'property \'type\' of failure of assertBe should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -345,7 +345,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertBe, 'expect', ), 'failure of assertBe should have own property \'expect\'.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertNotBe instanceof Object, 'failure of assertNotBe should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertNotBe, ), 'failure of assertNotBe should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertNotBe, ), 'failure of assertNotBe should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertNotBe, ).length === 3, 'failure of assertNotBe should have 3 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertNotBe, 'type', ), 'failure of assertNotBe should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertNotBe.type === 'string', 'property \'type\' of failure of assertNotBe should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -355,7 +355,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertNotBe, 'value', ), 'failure of assertNotBe should have own property \'value\'.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertAs instanceof Object, 'failure of assertAs should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertAs, ), 'failure of assertAs should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertAs, ), 'failure of assertAs should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertAs, ).length === 4, 'failure of assertAs should have 4 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertAs, 'type', ), 'failure of assertAs should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertAs.type === 'string', 'property \'type\' of failure of assertAs should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -366,7 +366,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertAs, 'expect', ), 'failure of assertAs should have own property \'expect\'.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertNotAs instanceof Object, 'failure of assertNotAs should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertNotAs, ), 'failure of assertNotAs should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertNotAs, ), 'failure of assertNotAs should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertNotAs, ).length === 3, 'failure of assertNotAs should have 3 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertNotAs, 'type', ), 'failure of assertNotAs should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertNotAs.type === 'string', 'property \'type\' of failure of assertNotAs should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -376,7 +376,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertNotAs, 'value', ), 'failure of assertNotAs should have own property \'value\'.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertMatch instanceof Object, 'failure of assertMatch should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertMatch, ), 'failure of assertMatch should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertMatch, ), 'failure of assertMatch should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertMatch, ).length === 4, 'failure of assertMatch should have 4 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertMatch, 'type', ), 'failure of assertMatch should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertMatch.type === 'string', 'property \'type\' of failure of assertMatch should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -389,7 +389,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( failToAssertMatch.regexp instanceof RegExp, 'property \'regexp\' of failure of assertMatch should be an instance of RegExp.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertInstanceOf instanceof Object, 'failure of assertInstanceOf should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertInstanceOf, ), 'failure of assertInstanceOf should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertInstanceOf, ), 'failure of assertInstanceOf should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertInstanceOf, ).length === 4, 'failure of assertInstanceOf should have 4 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertInstanceOf, 'type', ), 'failure of assertInstanceOf should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertInstanceOf.type === 'string', 'property \'type\' of failure of assertInstanceOf should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -400,7 +400,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertInstanceOf, 'expectClass', ), 'failure of assertInstanceOf should have own property \'expectClass\'.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertNotInstanceOf instanceof Object, 'failure of assertNotInstanceOf should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertNotInstanceOf, ), 'failure of assertNotInstanceOf should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertNotInstanceOf, ), 'failure of assertNotInstanceOf should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertNotInstanceOf, ).length === 4, 'failure of assertNotInstanceOf should have 4 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertNotInstanceOf, 'type', ), 'failure of assertNotInstanceOf should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertNotInstanceOf.type === 'string', 'property \'type\' of failure of assertNotInstanceOf should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -411,7 +411,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertNotInstanceOf, 'expectClass', ), 'failure of assertNotInstanceOf should have own property \'expectClass\'.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertOwn instanceof Object, 'failure of assertOwn should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertOwn, ), 'failure of assertOwn should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertOwn, ), 'failure of assertOwn should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertOwn, ).length === 4, 'failure of assertOwn should have 4 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertOwn, 'type', ), 'failure of assertOwn should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertOwn.type === 'string', 'property \'type\' of failure of assertOwn should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -422,7 +422,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertOwn, 'expectProperty', ), 'failure of assertOwn should have own property \'expectProperty\'.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertNotOwn instanceof Object, 'failure of assertNotOwn should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertNotOwn, ), 'failure of assertNotOwn should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertNotOwn, ), 'failure of assertNotOwn should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertNotOwn, ).length === 4, 'failure of assertNotOwn should have 4 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertNotOwn, 'type', ), 'failure of assertNotOwn should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertNotOwn.type === 'string', 'property \'type\' of failure of assertNotOwn should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -433,7 +433,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertNotOwn, 'expectProperty', ), 'failure of assertNotOwn should have own property \'expectProperty\'.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertFunction instanceof Object, 'failure of assertFunction should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertFunction, ), 'failure of assertFunction should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertFunction, ), 'failure of assertFunction should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertFunction, ).length === 3, 'failure of assertFunction should have 4 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertFunction, 'type', ), 'failure of assertFunction should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertFunction.type === 'string', 'property \'type\' of failure of assertFunction should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -443,7 +443,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertFunction, 'value', ), 'failure of assertFunction should have own property \'value\'.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertClass instanceof Object, 'failure of assertClass should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertClass, ), 'failure of assertClass should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertClass, ), 'failure of assertClass should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertClass, ).length === 3, 'failure of assertClass should have 4 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertClass, 'type', ), 'failure of assertClass should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertClass.type === 'string', 'property \'type\' of failure of assertClass should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -453,7 +453,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertClass, 'value', ), 'failure of assertClass should have own property \'value\'.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertAsync instanceof Object, 'failure of assertAsync should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertAsync, ), 'failure of assertAsync should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertAsync, ), 'failure of assertAsync should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertAsync, ).length === 3, 'failure of assertAsync should have 4 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertAsync, 'type', ), 'failure of assertAsync should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertAsync.type === 'string', 'property \'type\' of failure of assertAsync should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -463,7 +463,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertAsync, 'value', ), 'failure of assertAsync should have own property \'value\'.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertThrow instanceof Object, 'failure of assertThrow should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertThrow, ), 'failure of assertThrow should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertThrow, ), 'failure of assertThrow should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertThrow, ).length === 4, 'failure of assertThrow should have 4 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertThrow, 'type', ), 'failure of assertThrow should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertThrow.type === 'string', 'property \'type\' of failure of assertThrow should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -474,7 +474,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertThrow, 'expectError', ), 'failure of assertThrow should have own property \'expectError\'.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertThrowInstanceOf instanceof Object, 'failure of assertThrowInstanceOf should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertThrowInstanceOf, ), 'failure of assertThrowInstanceOf should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertThrowInstanceOf, ), 'failure of assertThrowInstanceOf should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertThrowInstanceOf, ).length === 4, 'failure of assertThrowInstanceOf should have 4 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertThrowInstanceOf, 'type', ), 'failure of assertThrowInstanceOf should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertThrowInstanceOf.type === 'string', 'property \'type\' of failure of assertThrowInstanceOf should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -485,7 +485,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertThrowInstanceOf, 'expectErrorClass', ), 'failure of assertThrowInstanceOf should have own property \'expectErrorClass\'.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertToThrow instanceof Object, 'failure of assertToThrow should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertToThrow, ), 'failure of assertToThrow should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertToThrow, ), 'failure of assertToThrow should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertToThrow, ).length === 2, 'failure of assertToThrow should have 2 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertToThrow, 'type', ), 'failure of assertToThrow should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertToThrow.type === 'string', 'property \'type\' of failure of assertToThrow should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -494,7 +494,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( typeof failToAssertToThrow.trace === 'string', 'property \'trace\' of failure of assertToThrow should be a string.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertNotThrow instanceof Object, 'failure of assertNotThrow should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertNotThrow, ), 'failure of assertNotThrow should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertNotThrow, ), 'failure of assertNotThrow should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertNotThrow, ).length === 3, 'failure of assertNotThrow should have 3 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertNotThrow, 'type', ), 'failure of assertNotThrow should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertNotThrow.type === 'string', 'property \'type\' of failure of assertNotThrow should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -504,7 +504,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertNotThrow, 'error', ), 'failure of assertNotThrow should have own property \'error\'.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertRun instanceof Object, 'failure of assertRun should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertRun, ), 'failure of assertRun should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertRun, ), 'failure of assertRun should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertRun, ).length === 2, 'failure of assertRun should have 3 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertRun, 'type', ), 'failure of assertRun should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertRun.type === 'string', 'property \'type\' of failure of assertRun should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -513,7 +513,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( typeof failToAssertRun.trace === 'string', 'property \'trace\' of failure of assertRun should be a string.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertRunTimes instanceof Object, 'failure of assertRun about times should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertRunTimes, ), 'failure of assertRun about times should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertRunTimes, ), 'failure of assertRun about times should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertRunTimes, ).length === 4, 'failure of assertRun about times should have 3 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertRunTimes, 'type', ), 'failure of assertRun about times should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertRunTimes.type === 'string', 'property \'type\' of failure of assertRun about times should be a string.', new Error().stack.replace( 'Error:', '', ), );
@@ -524,7 +524,7 @@ console.assert( Asserter.getResult.length === 1, 'length of Asserter.getResult s
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertRunTimes, 'expectTimes', ), 'failure of assertRun about times should have own property \'expectTimes\'.', new Error().stack.replace( 'Error:', '', ), );
 	
 	console.assert( failToAssertRunOrder instanceof Object, 'failure of assertRun about order should be an object.', new Error().stack.replace( 'Error:', '', ), );
-	console.assert( Object.isFrozen( failToAssertRunOrder, ), 'failure of assertRun about order should be frozen.', new Error().stack.replace( 'Error:', '', ), );
+	// console.assert( Object.isFrozen( failToAssertRunOrder, ), 'failure of assertRun about order should be frozen.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.keys( failToAssertRunOrder, ).length === 4, 'failure of assertRun about order should have 3 own properties.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( Object.prototype.hasOwnProperty.call( failToAssertRunOrder, 'type', ), 'failure of assertRun about order should have own property \'type\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( typeof failToAssertRunOrder.type === 'string', 'property \'type\' of failure of assertRun about order should be a string.', new Error().stack.replace( 'Error:', '', ), );

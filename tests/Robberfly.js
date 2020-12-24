@@ -28,4 +28,11 @@ console.assert( Robberfly.length === 0, 'length of Robberfly constructor should 
 	console.assert( !robberfly.addPath.toString().startsWith( 'async', ), 'robberfly.addPath should not be asynchronous.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( robberfly.addPath.name === 'addPath', 'name of robberfly.addPath should be \'addPath\'.', new Error().stack.replace( 'Error:', '', ), );
 	console.assert( robberfly.addPath.length === 0, 'length of robberfly.addPath should be 0', new Error().stack.replace( 'Error:', '', ), );
+	
+	robberfly.addPath( '../test.js', );
+	robberfly.run();
+	robberfly.runSerially();
+	robberfly.runIso();
+	robberfly.runIsoSerially();
+	(await robberfly.runIsoEach()).print();
 }

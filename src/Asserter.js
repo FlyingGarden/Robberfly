@@ -9,7 +9,7 @@ class Asserter
 	
 	#closed= false;
 	
-	#pushFailure= failure=> this.#failures.push( Object.freeze( failure, ), );
+	#pushFailure= failure=> this.#failures.push( failure, );
 	#beforeAssert= ()=> {
 		if( this.#closed )
 		{

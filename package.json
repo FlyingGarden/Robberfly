@@ -1,0 +1,26 @@
+{
+  "name": "robberfly",
+  "version": "0.1.3",
+  "description": "A test suit for JS",
+  "main": "Robberfly.js",
+  "type": "module",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Fenzland@github.com/FlyingGarden/Robberfly.git"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "Fenzland",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FlyingGarden/Robberfly/issues"
+  },
+  "homepage": "https://github.com/FlyingGarden/Robberfly#readme"
+}
