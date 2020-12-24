@@ -186,7 +186,7 @@ class Asserter
 		
 		this.#beforeAssert();
 		
-		tries( callback, )
+		return tries( callback, )
 			.then( ()=> {
 				this.#pushFailure( { type:'throw', error:null, expectError, trace:makeTrace(), }, );
 			}, )
@@ -207,7 +207,7 @@ class Asserter
 		
 		this.#beforeAssert();
 		
-		tries( callback, )
+		return tries( callback, )
 			.then( ()=> {
 				this.#pushFailure( { type:'throw_instance_of', error:null, expectErrorClass, trace:makeTrace(), }, );
 			}, )
@@ -227,7 +227,7 @@ class Asserter
 		
 		this.#beforeAssert();
 		
-		tries( callback, )
+		return tries( callback, )
 			.then( ()=> {
 				this.#pushFailure( { type:'to_throw_something', trace:makeTrace(), }, );
 			}, )
@@ -243,7 +243,7 @@ class Asserter
 		
 		this.#beforeAssert();
 		
-		tries( callback, )
+		return tries( callback, )
 			.catch( error=> {
 				this.#pushFailure( { type:'not_throw', error, trace:makeTrace(), }, );
 			}, )
