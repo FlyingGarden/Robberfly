@@ -58,7 +58,7 @@ globalThis.onmessage= async ( { data:{ action, ...data }, }, )=> {
 	// globalThis.postMessage( { foo:'bar', }, );
 	globalThis.postMessage( results, );
 	
-	if( globalThis.Deno )
+	if( globalThis.Deno && globalThis.workerClose )
 		return globalThis.workerClose();
 	
 	globalThis.close();
@@ -87,17 +87,21 @@ class ConcurrentManager
 		if( this.#concurrent < this.#limit )
 			return void ++this.#concurrent;
 		
-		this.#queue.push( makePromise(), );
+		const ticket= makePromise();
+		
+		this.#queue.push( ticket, );
+		
+		return ticket;
 	}
 	
 	free()
 	{
 		--this.#concurrent;
 		
-		const queuer= this.#queue.shift();
+		const ticket= this.#queue.shift();
 		
-		if( queuer )
-			queuer.resolve();
+		if( ticket )
+			ticket.resolve();
 	}
 }
 
